@@ -2,6 +2,8 @@
 
 **lights_dashboard** is a Phoenix 1.7 LiveView application for managing IP-addressable lights across a network. It provides a real-time web interface to list, create, edit, and delete lights—each storing a name, MAC address, and ON/OFF state—using LiveView’s LiveStreams for instant UI updates.
 
+![Demo](assets/demo.gif)
+
 
 ## Features
 
