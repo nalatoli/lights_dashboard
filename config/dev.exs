@@ -3,7 +3,7 @@ import Config
 # Configure your database
 config :lights_dashboard, LightsDashboard.Repo,
   username: "postgres",
-  password: "Were1@2@",
+  password: "postgres",
   hostname: "localhost",
   database: "lights_dev",
   stacktrace: true,
