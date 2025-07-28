@@ -6,13 +6,17 @@ defmodule LightsDashboardWeb.LightController do
 
   action_fallback LightsDashboardWeb.FallbackController
 
+  def dashboard(conn, _params) do
+    redirect(conn, to: "/dashboard")
+  end
+
   def index(conn, _params) do
     lights = Lights.list_lights()
     render(conn, :index, lights: lights)
   end
 
   def create(conn, %{"light" => light_params}) do
-    with {:ok, %Light{} = light} <- Lights.upsert_light(light_params) do
+    with {:ok, %Light{} = light} <- Lights.create_light(light_params) do
       LightsDashboardWeb.Endpoint.broadcast!("lights", "light_created", light)
 
       conn

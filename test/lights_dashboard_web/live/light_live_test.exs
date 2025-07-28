@@ -21,19 +21,19 @@ defmodule LightsDashboardWeb.LightLiveTest do
     setup [:create_light]
 
     test "lists all lights", %{conn: conn, light: light} do
-      {:ok, _index_live, html} = live(conn, ~p"/lights")
+      {:ok, _index_live, html} = live(conn, ~p"/dashboard")
 
       assert html =~ "Listing Lights"
       assert html =~ light.name
     end
 
     test "saves new light", %{conn: conn} do
-      {:ok, index_live, _html} = live(conn, ~p"/lights")
+      {:ok, index_live, _html} = live(conn, ~p"/dashboard")
 
       assert index_live |> element("a", "New Light") |> render_click() =~
                "New Light"
 
-      assert_patch(index_live, ~p"/new")
+      assert_patch(index_live, ~p"/dashboard/new")
 
       assert index_live
              |> form("#light-form", light: @invalid_attrs)
@@ -43,7 +43,7 @@ defmodule LightsDashboardWeb.LightLiveTest do
              |> form("#light-form", light: @create_attrs)
              |> render_submit()
 
-      assert_patch(index_live, ~p"/lights")
+      assert_patch(index_live, ~p"/dashboard")
 
       html = render(index_live)
       assert html =~ "Light created successfully"
@@ -51,12 +51,12 @@ defmodule LightsDashboardWeb.LightLiveTest do
     end
 
     test "updates light in listing", %{conn: conn, light: light} do
-      {:ok, index_live, _html} = live(conn, ~p"/lights")
+      {:ok, index_live, _html} = live(conn, ~p"/dashboard")
 
       assert index_live |> element("#lights-#{light.id} a", "Edit") |> render_click() =~
                "Edit Light"
 
-      assert_patch(index_live, ~p"/#{light}/edit")
+      assert_patch(index_live, ~p"/dashboard/#{light}/edit")
 
       assert index_live
              |> form("#light-form", light: @invalid_attrs)
@@ -66,7 +66,7 @@ defmodule LightsDashboardWeb.LightLiveTest do
              |> form("#light-form", light: @update_attrs)
              |> render_submit()
 
-      assert_patch(index_live, ~p"/lights")
+      assert_patch(index_live, ~p"/dashboard")
 
       html = render(index_live)
       assert html =~ "Light updated successfully"
@@ -74,7 +74,7 @@ defmodule LightsDashboardWeb.LightLiveTest do
     end
 
     test "deletes light in listing", %{conn: conn, light: light} do
-      {:ok, index_live, _html} = live(conn, ~p"/lights")
+      {:ok, index_live, _html} = live(conn, ~p"/dashboard")
 
       assert index_live |> element("#lights-#{light.id} a", "Delete") |> render_click()
       refute has_element?(index_live, "#lights-#{light.id}")
@@ -85,19 +85,19 @@ defmodule LightsDashboardWeb.LightLiveTest do
     setup [:create_light]
 
     test "displays light", %{conn: conn, light: light} do
-      {:ok, _show_live, html} = live(conn, ~p"/#{light}")
+      {:ok, _show_live, html} = live(conn, ~p"/dashboard/#{light}")
 
       assert html =~ "Show Light"
       assert html =~ light.name
     end
 
     test "updates light within modal", %{conn: conn, light: light} do
-      {:ok, show_live, _html} = live(conn, ~p"/#{light}")
+      {:ok, show_live, _html} = live(conn, ~p"/dashboard/#{light}")
 
       assert show_live |> element("a", "Edit") |> render_click() =~
                "Edit Light"
 
-      assert_patch(show_live, ~p"/#{light}/show/edit")
+      assert_patch(show_live, ~p"/dashboard/#{light}/show/edit")
 
       assert show_live
              |> form("#light-form", light: @invalid_attrs)
@@ -107,7 +107,7 @@ defmodule LightsDashboardWeb.LightLiveTest do
              |> form("#light-form", light: @update_attrs)
              |> render_submit()
 
-      assert_patch(show_live, ~p"/#{light}")
+      assert_patch(show_live, ~p"/dashboard/#{light}")
 
       html = render(show_live)
       assert html =~ "Light updated successfully"

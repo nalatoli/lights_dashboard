@@ -74,34 +74,6 @@ defmodule LightsDashboard.Lights do
   end
 
   @doc """
-  Inserts a new light or updates the existing one matching `mac_address`.
-
-    ## Examples
-
-      iex> upsert_light(%{field: value})
-      {:ok, %Light{}}
-
-      iex> upsert_light(%{field: bad_value})
-      {:error, %Ecto.Changeset{}}
-  """
-  def upsert_light(attrs) do
-    attrs =
-      Map.put(
-        attrs,
-        "updated_at",
-        NaiveDateTime.utc_now()
-        |> NaiveDateTime.truncate(:second)
-      )
-
-    %Light{}
-    |> Light.changeset(attrs)
-    |> Repo.insert(
-      on_conflict: {:replace_all_except, [:id, :inserted_at]},
-      conflict_target: :mac_address
-    )
-  end
-
-  @doc """
   Deletes a light.
 
   ## Examples

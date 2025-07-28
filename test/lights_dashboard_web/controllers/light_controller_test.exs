@@ -23,17 +23,17 @@ defmodule LightsDashboardWeb.LightControllerTest do
 
   describe "index" do
     test "lists all lights", %{conn: conn} do
-      conn = get(conn, ~p"/api/lights")
+      conn = get(conn, ~p"/api")
       assert json_response(conn, 200)["data"] == []
     end
   end
 
   describe "create light" do
     test "renders light when data is valid", %{conn: conn} do
-      conn = post(conn, ~p"/api/lights", light: @create_attrs)
+      conn = post(conn, ~p"/api", light: @create_attrs)
       assert %{"id" => id} = json_response(conn, 201)["data"]
 
-      conn = get(conn, ~p"/api/lights/#{id}")
+      conn = get(conn, ~p"/api/#{id}")
 
       assert %{
                "id" => ^id,
@@ -44,7 +44,7 @@ defmodule LightsDashboardWeb.LightControllerTest do
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
-      conn = post(conn, ~p"/api/lights", light: @invalid_attrs)
+      conn = post(conn, ~p"/api/", light: @invalid_attrs)
       assert json_response(conn, 422)["errors"] != %{}
     end
   end
@@ -53,10 +53,10 @@ defmodule LightsDashboardWeb.LightControllerTest do
     setup [:create_light]
 
     test "renders light when data is valid", %{conn: conn, light: %Light{id: id} = light} do
-      conn = put(conn, ~p"/api/lights/#{light}", light: @update_attrs)
+      conn = put(conn, ~p"/api/#{light}", light: @update_attrs)
       assert %{"id" => ^id} = json_response(conn, 200)["data"]
 
-      conn = get(conn, ~p"/api/lights/#{id}")
+      conn = get(conn, ~p"/api/#{id}")
 
       assert %{
                "id" => ^id,
@@ -67,7 +67,7 @@ defmodule LightsDashboardWeb.LightControllerTest do
     end
 
     test "renders errors when data is invalid", %{conn: conn, light: light} do
-      conn = put(conn, ~p"/api/lights/#{light}", light: @invalid_attrs)
+      conn = put(conn, ~p"/api/#{light}", light: @invalid_attrs)
       assert json_response(conn, 422)["errors"] != %{}
     end
   end
@@ -76,11 +76,11 @@ defmodule LightsDashboardWeb.LightControllerTest do
     setup [:create_light]
 
     test "deletes chosen light", %{conn: conn, light: light} do
-      conn = delete(conn, ~p"/api/lights/#{light}")
+      conn = delete(conn, ~p"/api/#{light}")
       assert response(conn, 204)
 
       assert_error_sent 404, fn ->
-        get(conn, ~p"/api/lights/#{light}")
+        get(conn, ~p"/api/#{light}")
       end
     end
   end

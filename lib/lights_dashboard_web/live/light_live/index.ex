@@ -3,6 +3,7 @@ defmodule LightsDashboardWeb.LightLive.Index do
 
   alias LightsDashboard.Lights
   alias LightsDashboard.Lights.Light
+  alias LightsDashboardWeb.LightLive.FormComponent
 
   @impl true
   def mount(_params, _session, socket) do
@@ -19,18 +20,21 @@ defmodule LightsDashboardWeb.LightLive.Index do
     socket
     |> assign(:page_title, "Edit Light")
     |> assign(:light, Lights.get_light!(id))
+    |> assign(:patch, ~p"/dashboard")
   end
 
   defp apply_action(socket, :new, _params) do
     socket
     |> assign(:page_title, "New Light")
     |> assign(:light, %Light{})
+    |> assign(:patch, ~p"/dashboard")
   end
 
   defp apply_action(socket, :index, _params) do
     socket
-    |> assign(:page_title, "Listing Lights")
+    |> assign(:page_title, "Lights Dashboard")
     |> assign(:light, nil)
+    |> assign(:patch, ~p"/dashboard")
   end
 
   @impl true
@@ -39,6 +43,11 @@ defmodule LightsDashboardWeb.LightLive.Index do
         socket
       )
       when event in ["light_created", "light_updated"] do
+    {:noreply, stream_insert(socket, :lights, light)}
+  end
+
+  @impl true
+  def handle_info({FormComponent, {:saved, light}}, socket) do
     {:noreply, stream_insert(socket, :lights, light)}
   end
 

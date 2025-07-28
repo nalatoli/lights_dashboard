@@ -1,4 +1,27 @@
-<h2 class="text-xl font-semibold mb-4">Recent Light Reports</h2>
+<.header>
+  <%= @page_title %>
+  <:actions>
+    <.link patch={~p"/dashboard/new"}><.button>New Light</.button></.link>
+  </:actions>
+</.header>
+
+<.modal
+  :if={@live_action in [:new, :edit]}
+  id="light-modal"
+  show
+  on_cancel={JS.patch(~p"/")}
+>
+  <.live_component
+    module={LightsDashboardWeb.LightLive.FormComponent}
+    id={@light.id || :new}
+    title={@page_title}
+    patch={@patch}
+    action={@live_action}
+    return_to={~p"/"}
+    light={@light}
+  />
+</.modal>
+
 <.table id="lights" rows={@streams.lights}>
   <:col :let={{_dom_id, r}} label="Name"><%= r.name %></:col>
   <:col :let={{_dom_id, r}} label="MAC"><%= r.mac_address %></:col>
@@ -6,4 +29,16 @@
   <:col :let={{_dom_id, r}} label="At">
     <%= Timex.format!(r.updated_at, "{h24}:{m}:{s}") %>
   </:col>
+<:col :let={{_dom_id, r}} label="">
+  <div class="flex gap-4">
+    <.link patch={~p"/dashboard/#{r.id}/edit"}>
+      Edit
+    </.link>
+    <.link
+      phx-click={JS.push("delete", value: %{id: r.id})}
+      data-confirm="Are you sure?">
+      Delete
+    </.link>
+  </div>
+</:col>
 </.table>

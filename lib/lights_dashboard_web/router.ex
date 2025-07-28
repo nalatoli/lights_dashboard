@@ -16,13 +16,15 @@ defmodule LightsDashboardWeb.Router do
 
   scope "/", LightsDashboardWeb do
     pipe_through :browser
+    get "/", LightController, :dashboard
+  end
 
-    # get "/", PageController, :home
+  scope "/dashboard", LightsDashboardWeb do
+    pipe_through :browser
 
     live "/", LightLive.Index, :index
     live "/new", LightLive.Index, :new
     live "/:id/edit", LightLive.Index, :edit
-
     live "/:id", LightLive.Show, :show
     live "/:id/show/edit", LightLive.Show, :edit
   end
