@@ -7,7 +7,7 @@ import Config
 # Run `mix help test` for more information.
 config :lights_dashboard, LightsDashboard.Repo,
   username: "postgres",
-  password: "Were1@2@",
+  password: "postgres",
   hostname: "localhost",
   database: "lights_test#{System.get_env("MIX_TEST_PARTITION")}",
   pool: Ecto.Adapters.SQL.Sandbox,
