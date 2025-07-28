@@ -1,0 +1,21 @@
+{
+  "editor.formatOnSave": true,
+  "elixirLS.mixEnv": "dev",
+  "elixirLS.dialyzerEnabled": true,
+  "elixirLS.fetchDeps": true,
+  "files.associations": {
+    "*.eex": "html",
+    "*.leex": "html"
+  },
+  "emmet.includeLanguages": {
+    "html": "html",
+  },
+  "[elixir]": {
+    "editor.defaultFormatter": "JakeBecker.elixir-ls",
+    "editor.formatOnSave": true
+  },
+  "[eex]": {
+    "editor.defaultFormatter": "JakeBecker.elixir-ls",
+    "editor.formatOnSave": true
+  }
+}

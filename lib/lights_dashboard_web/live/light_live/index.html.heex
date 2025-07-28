@@ -1,0 +1,9 @@
+<h2 class="text-xl font-semibold mb-4">Recent Light Reports</h2>
+<.table id="lights" rows={@streams.lights}>
+  <:col :let={{_dom_id, r}} label="Name"><%= r.name %></:col>
+  <:col :let={{_dom_id, r}} label="MAC"><%= r.mac_address %></:col>
+  <:col :let={{_dom_id, r}} label="State"><%= if r.state, do: "ON", else: "OFF" %></:col>
+  <:col :let={{_dom_id, r}} label="At">
+    <%= Timex.format!(r.updated_at, "{h24}:{m}:{s}") %>
+  </:col>
+</.table>

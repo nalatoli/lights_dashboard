@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "jakebecker.elixir-ls",
+    "jamilabreu.vscode-phoenix-snippets",
+    "samuel-pordeus.elixir-test",
+    "pantajoe.vscode-elixir-credo",
+    "saratravi.elixir-formatter"
+  ],
+}
