@@ -37,7 +37,7 @@
 
 ## Environment Variables
 
-LightsDashboard follows a 12‑factor approach; secrets and deploy‑specific values are read at runtime. Create a `.env` (or export the variables in your shell / CI) *before* starting the server.
+**lights_dashboard** follows a 12‑factor approach; secrets and deploy‑specific values are read at runtime. Create a `.env` (or export the variables in your shell / CI) *before* starting the server.
 
 | Variable            | Example                                    | Purpose                                                       |
 | ------------------- | ------------------------------------------ | ------------------------------------------------------------- |
@@ -87,4 +87,4 @@ Start the Phoenix server:
 ```bash
 mix phx.server
 ```
-Then visit [`http://localhost:4000/dashboard`](http://localhost:4000/dashboard) to access the LightsDashboard ([`http://localhost:4000`](http://localhost:4000/dashboard) redirects to the dashboard).
+Then visit [`http://localhost:4000/dashboard`](http://localhost:4000/dashboard) to access the dashboard ([`http://localhost:4000`](http://localhost:4000) redirects to the dashboard).
