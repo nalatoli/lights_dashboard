@@ -23,7 +23,7 @@ defmodule LightsDashboardWeb.LightLiveTest do
     test "lists all lights", %{conn: conn, light: light} do
       {:ok, _index_live, html} = live(conn, ~p"/dashboard")
 
-      assert html =~ "Listing Lights"
+      assert html =~ "Lights Dashboard"
       assert html =~ light.name
     end
 

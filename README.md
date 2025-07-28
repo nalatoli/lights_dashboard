@@ -30,9 +30,9 @@
 
 ## Requirements
 
-- Elixir `~> 1.13`
-- Erlang/OTP `~> 24`
-- phoenix `~> 1.7.0`
+- Elixir `~> 1.18.4`
+- Erlang/OTP `~> 27`
+- phoenix `~> 1.7.21`
 - PostgreSQL `~> 17`
 
 ## Environment Variables
