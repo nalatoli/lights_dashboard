@@ -37,7 +37,7 @@
 
 ## Environment Variables
 
-**lights_dashboard** follows a 12‑factor approach; secrets and deploy‑specific values are read at runtime. Create a `.env` (or export the variables in your shell / CI) *before* starting the server.
+Set the following enviornment variables *before* starting the server.
 
 | Variable            | Example                                    | Purpose                                                       |
 | ------------------- | ------------------------------------------ | ------------------------------------------------------------- |
@@ -48,8 +48,8 @@
 | `POOL_SIZE`         | `15`                                       | DB connection pool size                                       |
 | `DB_SSL`            | `true` / `false`                           | Enable TLS to the database                                    |
 | `ECTO_IPV6`         | `true` / `false`                           | Use IPv6 sockets for DB connections                           |
-| `DNS_CLUSTER_QUERY` | `lights-dashboard.internal` (optional)     | DNS name for distributed Erlang clustering                    |
-
+| `DNS_CLUSTER_QUERY` | `lights-dashboard.internal` (optional)     | DNS name for distributed Erlang clustering 
+                   
 ## Setup (Development)
 
 1. **Clone the repository**
