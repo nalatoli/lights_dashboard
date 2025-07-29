@@ -18,7 +18,7 @@
 
 ## Project Structure
 
-- `assets` — Tailwind default assets:
+- `assets` — Tailwind default assets
 - `lib/lights_dashboard_web/live/` — LiveViews and components:
   - `LightLive.Index` — Index page for listing lights.
   - `LightLive.Show` — Show page for individual light.
